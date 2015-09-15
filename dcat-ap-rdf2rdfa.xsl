@@ -180,7 +180,7 @@
   </xsl:template>
   
   <xsl:template name="metadata">
-    <details title="Details">
+    <details>
       <summary></summary>
         <section class="metadata">
           <h3>Metadata</h3>
