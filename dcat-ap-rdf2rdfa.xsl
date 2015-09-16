@@ -99,6 +99,13 @@
     <p><xsl:value-of select="$title"/><xsl:text> @ Stash: </xsl:text><a href="{$home}"><xsl:value-of select="$home"/></a></p>
   </xsl:param>
 
+<!-- Use this parameter to specify the set of LINK, STYLE, SCRIPT
+     elements to be added to the HEAD of the resulting HTML document.
+     This information can  be passed as a parameter by the XSLT 
+     processor used. -->
+
+  <xsl:param name="head"/>
+
 <!-- Namespace URIs -->
 
   <xsl:param name="rdf">http://www.w3.org/1999/02/22-rdf-syntax-ns#</xsl:param>
@@ -119,6 +126,7 @@
   <head>
     <title><xsl:value-of select="$title"/></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <xsl:value-of select="$head" disable-output-escaping="yes"/>
   </head>
   <body>
     <header><h1><xsl:value-of select="$title"/></h1></header>
