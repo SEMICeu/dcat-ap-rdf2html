@@ -188,13 +188,13 @@
   </xsl:template>
   
   <xsl:template name="metadata">
-    <details>
-      <summary></summary>
-        <section class="metadata">
-          <h3>Metadata</h3>
+    <section class="metadata">
+      <h3>Metadata</h3>
+        <details>
+          <summary>Details</summary>
           <xsl:call-template name="subject"/>
-        </section>
-    </details>
+        </details>
+    </section>
   </xsl:template>
 
   <xsl:template name="subject">
@@ -316,6 +316,7 @@
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
+<!-- Datatype properties -->      
       <xsl:otherwise>
         <xsl:choose>
           <xsl:when test="@rdf:datatype">
