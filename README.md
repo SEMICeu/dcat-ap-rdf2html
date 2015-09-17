@@ -29,7 +29,7 @@ The following sections provide examples of code from popular programming languag
   $xmlURL = "http://some.site/dataset.rdf";
 
 // The URL pointing to the latest version of the XSLT.
-  $xslURL = "https://webgate.ec.europa.eu/CITnet/stash/projects/ODCKAN/repos/iso-19139-to-dcat-ap/browse/iso-19139-to-dcat-ap.xsl?raw";
+  $xslURL = "https://webgate.ec.europa.eu/CITnet/stash/projects/ODCKAN/repos/dcat-ap-rdf2html/browse/dcat-ap-rdf2rdfa.xsl?raw";
 
   $xml = new DOMDocument;
   $xml->load($xmlURL) or die();
@@ -54,7 +54,7 @@ import lxml.etree as ET
 xmlURL = "http://some.site/dataset.rdf"
 
 # The URL pointing to the latest version of the XSLT.
-xslURL = "https://webgate.ec.europa.eu/CITnet/stash/projects/ODCKAN/repos/iso-19139-to-dcat-ap/browse/iso-19139-to-dcat-ap.xsl?raw"
+xslURL = "https://webgate.ec.europa.eu/CITnet/stash/projects/ODCKAN/repos/dcat-ap-rdf2html/browse/dcat-ap-rdf2rdfa.xsl?raw"
 
 xml = ET.parse(xmlURL)
 xsl = ET.parse(xslURL)
