@@ -56,6 +56,7 @@
     xmlns:dcat    = "http://www.w3.org/ns/dcat#"
     xmlns:dcterms = "http://purl.org/dc/terms/"
     xmlns:dctype  = "http://purl.org/dc/dcmitype/"
+    xmlns:foaf    = "http://xmlns.com/foaf/0.1/"
     xmlns:rdf     = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:rdfs    = "http://www.w3.org/2000/01/rdf-schema#"
     xmlns:vcard   = "http://www.w3.org/2006/vcard/ns#"
@@ -131,6 +132,9 @@
 <!-- Main template -->  
   
   <xsl:template match="/">
+  
+    <xsl:param name="DatasetNr" select="count(rdf:RDF/dcat:Dataset|rdf:RDF/rdf:Description[rdf:type/@rdf:resource='http://www.w3.org/ns/dcat#Dataset'])"/>
+    <xsl:param name="ServiceNr" select="count(rdf:RDF/dcat:Catalog|rdf:RDF/dctype:Service|rdf:RDF/rdf:Description[rdf:type/@rdf:resource='http://www.w3.org/ns/dcat#Catalog' or rdf:type/@rdf:resource='http://purl.org/dc/dcmitype/Service'])"/>
 
 <html>
   <head>
@@ -143,6 +147,18 @@
     <nav>
     </nav>
     <section>
+      <h1>Summary</h1>
+      <dl>
+        <dt>Datasets</dt>
+        <dd><xsl:value-of select="$DatasetNr"/></dd>
+        <dt>Services</dt>
+        <dd><xsl:value-of select="$ServiceNr"/></dd>
+      </dl>
+    </section>
+    <xsl:apply-templates select="rdf:RDF/dcat:Dataset|rdf:RDF/rdf:Description[rdf:type/@rdf:resource='http://www.w3.org/ns/dcat#Dataset']"/>
+    <xsl:apply-templates select="rdf:RDF/dcat:Catalog|rdf:RDF/dctype:Service|rdf:RDF/rdf:Description[rdf:type/@rdf:resource='http://www.w3.org/ns/dcat#Catalog' or rdf:type/@rdf:resource='http://purl.org/dc/dcmitype/Service']"/>
+<!--    
+    <section>
       <h1>Datasets (<xsl:value-of select="count(rdf:RDF/dcat:Dataset|rdf:RDF/rdf:Description[rdf:type/@rdf:resource='http://www.w3.org/ns/dcat#Dataset'])"/>)</h1>
       <xsl:apply-templates select="rdf:RDF/dcat:Dataset|rdf:RDF/rdf:Description[rdf:type/@rdf:resource='http://www.w3.org/ns/dcat#Dataset']"/>
     </section>
@@ -150,6 +166,7 @@
       <h1>Services (<xsl:value-of select="count(rdf:RDF/dcat:Catalog|rdf:RDF/dctype:Service|rdf:RDF/rdf:Description[rdf:type/@rdf:resource='http://www.w3.org/ns/dcat#Catalog' or rdf:type/@rdf:resource='http://purl.org/dc/dcmitype/Service'])"/>)</h1>
       <xsl:apply-templates select="rdf:RDF/dcat:Catalog|rdf:RDF/dctype:Service|rdf:RDF/rdf:Description[rdf:type/@rdf:resource='http://www.w3.org/ns/dcat#Catalog' or rdf:type/@rdf:resource='http://purl.org/dc/dcmitype/Service']"/>
     </section>
+-->    
     <aside>
     </aside>
     <footer>
@@ -162,7 +179,7 @@
 
   <xsl:template name="Dataset" match="rdf:RDF/dcat:Dataset|rdf:RDF/rdf:Description[rdf:type/@rdf:resource='http://www.w3.org/ns/dcat#Dataset']">
     <section class="record">
-      <h2>Dataset: <span xml:lang="{dcterms:title/@xml:lang}" lang="{dcterms:title/@xml:lang}"><xsl:value-of select="dcterms:title"/></span></h2>
+      <h1>Dataset: <span xml:lang="{dcterms:title/@xml:lang}" lang="{dcterms:title/@xml:lang}"><xsl:value-of select="dcterms:title"/></span></h1>
       <xsl:call-template name="Agent"/>
       <p xml:lang="{dcterms:description/@xml:lang}" lang="{dcterms:description/@xml:lang}"><xsl:value-of select="dcterms:description"/></p>
       <xsl:call-template name="metadata"/>
@@ -171,7 +188,7 @@
 
   <xsl:template name="Service" match="rdf:RDF/dcat:Catalog|rdf:RDF/dctype:Service|rdf:RDF/rdf:Description[rdf:type/@rdf:resource='http://www.w3.org/ns/dcat#Catalog' or rdf:type/@rdf:resource='http://purl.org/dc/dcmitype/Service']">
     <section class="record">
-      <h2>Service: <span xml:lang="{dcterms:title/@xml:lang}" lang="{dcterms:title/@xml:lang}"><xsl:value-of select="dcterms:title"/></span></h2>
+      <h1>Service: <span xml:lang="{dcterms:title/@xml:lang}" lang="{dcterms:title/@xml:lang}"><xsl:value-of select="dcterms:title"/></span></h1>
       <xsl:call-template name="Agent"/>
       <p xml:lang="{dcterms:description/@xml:lang}" lang="{dcterms:description/@xml:lang}"><xsl:value-of select="dcterms:description"/></p>
       <xsl:call-template name="metadata"/>
@@ -180,26 +197,67 @@
   
   <xsl:template name="Agent">
     <address>
-    <dl>
-    <xsl:for-each select="dcat:contactPoint">
-      <xsl:choose>
-        <xsl:when test="*/vcard:hasURL/@rdf:resource">
+      <dl>
+        <xsl:for-each select="dcterms:publisher">
+          <xsl:variable name="org" select="*/foaf:name"/>
+          <xsl:variable name="email" select="*/foaf:mbox/@rdf:resource"/>
+          <xsl:variable name="url" select="*/foaf:workplaceHomepage/@rdf:resource"/>
+          <xsl:variable name="name" select="$org"/>
+          <dt>Publisher</dt>
+          <dd>
+          <xsl:choose>
+            <xsl:when test="$url != ''">
+              <a href="{$url}"><xsl:value-of select="$name"/></a>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$name"/>
+            </xsl:otherwise>
+          </xsl:choose>
+          <xsl:if test="$email != ''">
+            <xsl:text> (</xsl:text><a href="{$email}"><xsl:value-of select="substring-after($email, 'mailto:')"/></a><xsl:text>)</xsl:text>
+          </xsl:if>
+          </dd>
+        </xsl:for-each>
+        <xsl:for-each select="dcat:contactPoint">
+          <xsl:variable name="individual" select="*/vcard:fn"/>
+          <xsl:variable name="org" select="*/vcard:organization-name"/>
+          <xsl:variable name="email" select="*/vcard:hasEmail/@rdf:resource"/>
+          <xsl:variable name="url" select="*/vcard:hasURL/@rdf:resource"/>
+          <xsl:variable name="name">
+            <xsl:choose>
+              <xsl:when test="$individual != '' and $org != ''">
+                <xsl:value-of select="$individual"/>
+                <xsl:text>, </xsl:text>
+                <xsl:value-of select="$org"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="$individual"/>
+                <xsl:value-of select="$org"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
           <dt>Contact point</dt>
-          <dd><a href="{*/vcard:hasURL/@rdf:resource}"><xsl:value-of select="*/vcard:organization-name"/></a> (<a href="{*/vcard:hasEmail/@rdf:resource}"><xsl:value-of select="substring-after(*/vcard:hasEmail/@rdf:resource,':')"/></a>)</dd>
-        </xsl:when>
-        <xsl:otherwise>
-          <dt>Contact point</dt>
-          <dd><xsl:value-of select="*/vcard:organization-name"/> (<a href="{*/vcard:hasEmail/@rdf:resource}"><xsl:value-of select="*/vcard:hasEmail/@rdf:resource"/></a>)</dd>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:for-each>
-    </dl>
+          <dd>
+          <xsl:choose>
+            <xsl:when test="$url != ''">
+              <a href="{$url}"><xsl:value-of select="$name"/></a>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$name"/>
+            </xsl:otherwise>
+          </xsl:choose>
+          <xsl:if test="$email != ''">
+            <xsl:text> (</xsl:text><a href="{$email}"><xsl:value-of select="substring-after($email, 'mailto:')"/></a><xsl:text>)</xsl:text>
+          </xsl:if>
+          </dd>
+        </xsl:for-each>
+      </dl>
     </address>
   </xsl:template>
   
   <xsl:template name="metadata">
     <section class="metadata">
-      <h3>Metadata</h3>
+      <h2>Metadata</h2>
         <details>
           <summary>Details</summary>
           <xsl:call-template name="subject"/>
