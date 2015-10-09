@@ -30,15 +30,25 @@
 
   PURPOSE AND USAGE
 
-  This XSLT is a proof of concept for the HTML+RDFa serialisation of DCAT-AP,  
-  and related extensions, available on Joinup, the collaboration platform of 
-  the EU ISA Programme:
+  This XSLT is a proof of concept for the HTML+RDFa representation of metadata 
+  based on DCAT-AP, and related extensions (as GeoDCAT-AP). The DCAT-AP 
+  specification is available on Joinup, the collaboration platform of the 
+  EU ISA Programme:
   
     https://joinup.ec.europa.eu/node/63567/
     
   As such, this XSLT must be considered as unstable, and can be updated any 
-  time based on the revisions to the DCAT-AP specifications and 
-  related work in the framework of the EU ISA Programme.
+  time based on the revisions to the DCAT-AP specification and related 
+  extensions.
+  
+  The official distributions of this XSLT are published in the European 
+  Commission's Stash repository:
+  
+    https://webgate.ec.europa.eu/CITnet/stash/projects/ODCKAN/repos/dcat-ap-rdf2html
+
+  Comments and inquiries should be sent to the GeoDCAT-AP WG mailing list: 
+
+    dcat_application_profile-geo@joinup.ec.europa.eu
   
 -->
 
