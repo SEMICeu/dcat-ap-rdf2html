@@ -30,15 +30,15 @@
 
   PURPOSE AND USAGE
 
-  This XSLT is a proof of concept for the implementation of the specification
-  concerning the geospatial profile of DCAT-AP (GeoDCAT-AP), available on 
-  Joinup, the collaboration platform of the EU ISA Programme:
+  This XSLT is a proof of concept for the HTML+RDFa serialisation of DCAT-AP,  
+  and related extensions, available on Joinup, the collaboration platform of 
+  the EU ISA Programme:
   
-    https://joinup.ec.europa.eu/node/139283/
+    https://joinup.ec.europa.eu/node/63567/
     
   As such, this XSLT must be considered as unstable, and can be updated any 
-  time based on the revisions to the GeoDCAT-AP specifications and 
-  related work in the framework of INSPIRE and the EU ISA Programme.
+  time based on the revisions to the DCAT-AP specifications and 
+  related work in the framework of the EU ISA Programme.
   
 -->
 
