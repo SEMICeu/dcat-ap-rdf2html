@@ -1,6 +1,6 @@
 # Purpose and usage
 
-This XSLT is a proof of concept for the HTML+RDFa representation of metadata based on [DCAT-AP](https://joinup.ec.europa.eu/node/63567/), and related extensions (as [GeoDCAT-AP](https://joinup.ec.europa.eu/node/139283/)), available on Joinup, the collaboration platform of the [EU ISA Programme](http://ec.europa.eu/isa).
+This XSLT is a proof of concept for the HTML+RDFa representation of metadata based on [DCAT-AP](https://joinup.ec.europa.eu/node/63567/), and related extensions (as [GeoDCAT-AP](https://joinup.ec.europa.eu/node/139283/)). The DCAT-AP specification is available on Joinup, the collaboration platform of the [EU ISA Programme](http://ec.europa.eu/isa).
   
 As such, this XSLT must be considered as unstable, and can be updated any time based on the revisions to the DCAT-AP specifications and related extensions.
 
