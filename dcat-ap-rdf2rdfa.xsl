@@ -345,10 +345,10 @@
               <dd property="{$ename}" content="{.}" xml:lang="{@xml:lang}" lang="{@xml:lang}"><xsl:value-of select="."/></dd>
             </xsl:when>
             <xsl:when test="@rdf:datatype">
-              <dd property="{$ename}" content="{.}" datatype="{@rdf:datatype}"><xsl:value-of select="."/></dd>
+              <dd property="{$ename}" content="{.}" datatype="{@rdf:datatype}"><code><xsl:value-of select="."/></code></dd>
             </xsl:when>
             <xsl:when test="@rdf:parseType = 'Literal'">
-              <dd property="{$ename}" content="{.}" datatype="{$rdf}XMLLiteral"><xsl:value-of select="."/></dd>
+              <dd property="{$ename}" content="{.}" datatype="{$rdf}XMLLiteral"><code><xsl:value-of select="."/></code></dd>
             </xsl:when>
             <xsl:otherwise>
               <dd property="{$ename}" content="{.}"><xsl:value-of select="."/></dd>
