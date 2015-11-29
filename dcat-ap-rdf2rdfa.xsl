@@ -364,8 +364,8 @@
       <xsl:call-template name="setQname"/>  
     </xsl:param>
     <xsl:choose>
-<!-- Object properties -->    
-      <xsl:when test="child::* or @rdf:resource">
+<!-- Object properties & individuals -->
+      <xsl:when test="child::* or @rdf:about or @rdf:resource">
         <xsl:choose>
           <xsl:when test="@rdf:parseType">
             <dt><xsl:value-of select="$qname"/></dt>
@@ -384,7 +384,7 @@
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
-<!-- Datatype properties -->      
+<!-- Datatype properties, plain and typed literals -->      
       <xsl:otherwise>
         <xsl:choose>
           <xsl:when test="@rdf:datatype">
