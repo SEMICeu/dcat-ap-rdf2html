@@ -4,9 +4,7 @@ This XSLT is a proof of concept for the HTML+RDFa representation of metadata bas
   
 As such, this XSLT must be considered as unstable, and can be updated any time based on the revisions to the DCAT-AP specifications and related extensions.
 
-Comments and inquiries should be sent to the GeoDCAT-AP WG mailing list: 
-
-    dcat_application_profile-geo@joinup.ec.europa.eu
+Comments and inquiries should be sent via the [dedicated issue tracker](https://github.com/SEMICeu/dcat-ap-rdf2html/issues) 
 
 # Content
 
