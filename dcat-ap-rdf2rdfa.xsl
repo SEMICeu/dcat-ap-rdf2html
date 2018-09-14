@@ -2,7 +2,7 @@
 
 <!--  
 
-  Copyright 2015-2017 EUROPEAN UNION
+  Copyright 2015-2018 EUROPEAN UNION
   Licensed under the EUPL, Version 1.1 or - as soon they will be approved by
   the European Commission - subsequent versions of the EUPL (the "Licence");
   You may not use this work except in compliance with the Licence.
@@ -41,14 +41,14 @@
   time based on the revisions to the DCAT-AP specification and related 
   extensions.
   
-  The official distributions of this XSLT are published in the European 
-  Commission's Stash repository:
+  The official distributions of this XSLT are published in the dedicated GitHub
+  repository:
   
-    https://webgate.ec.europa.eu/CITnet/stash/projects/ODCKAN/repos/dcat-ap-rdf2html
+    https://github.com/SEMICeu/dcat-ap-rdf2html
 
-  Comments and inquiries should be sent to the GeoDCAT-AP WG mailing list: 
+  Comments and inquiries should be sent via the corresponding issue tracker: 
 
-    dcat_application_profile-geo@joinup.ec.europa.eu
+    https://github.com/SEMICeu/dcat-ap-rdf2html/issues
   
 -->
 
@@ -75,7 +75,7 @@
 
 <!-- The URL of the repository hosting the XSLT source code -->
 
-  <xsl:param name="home">https://webgate.ec.europa.eu/CITnet/stash/projects/ODCKAN/repos/dcat-ap-html</xsl:param>
+  <xsl:param name="home">https://github.com/SEMICeu/dcat-ap-rdf2html</xsl:param>
 
 <!-- The title of the resulting HTML page. 
      This information can  be passed as a parameter by the XSLT 
