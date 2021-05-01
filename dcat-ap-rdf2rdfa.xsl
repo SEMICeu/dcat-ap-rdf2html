@@ -16,8 +16,10 @@
   See the Licence for the specific language governing permissions and
   limitations under the Licence.
  
-  Authors: European Commission, Joint Research Centre (JRC)
-           Andrea Perego <andrea.perego@ec.europa.eu>
+  Authors:      European Commission, Joint Research Centre (JRC)
+                Andrea Perego <andrea.perego@ec.europa.eu>
+
+  Source code:  https://github.com/SEMICeu/dcat-ap-rdf2html
  
   This work was supported by the EU Interoperability Solutions for
   European Public Administrations Programme (http://ec.europa.eu/isa)
@@ -35,7 +37,7 @@
   specification is available on Joinup, the collaboration platform of the 
   EU ISA Programme:
   
-    https://joinup.ec.europa.eu/node/63567/
+    https://joinup.ec.europa.eu/solution/dcat-application-profile-data-portals-europe
     
   As such, this XSLT must be considered as unstable, and can be updated any 
   time based on the revisions to the DCAT-AP specification and related 
